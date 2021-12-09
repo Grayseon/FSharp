@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSharp</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <div id="background"></div>
+        <div id="flip">
+            <h1 id="rotate">ROTATE DEVICE TO PLAY<h1>
+        </div>
+        <div id="centerframe">
+            <input type="" placeholder="Your Name" id="name" maxlength="9" minlength="3" class="bordered">
+            <button id="join" class="bordered">Join</button>
+            <h1 id="instrument">Choose your instrument</h1>
+            <select id="instrumentlist" onchange="instrumentchange()" class="bordered">
+                <option value="Choosing instrument">Select an instrument</option>
+                <option value="Flute">Flute</option>
+                <option value="Clarinet">Clarinet</option>
+                <option value="Saxophone">Saxophone</option>
+                <option value="Trumpet">Trumpet</option>
+                <option value="French Horn">French Horn</option>
+                <option value="Percussion">Percussion</option>
+                <option value="Trombone">Trombone</option>
+                <option value="Baritone">Baritone</option>
+                <option value="Tuba">Tuba</option>
+            </select>
+            <img id="note">
+        </div>
+    </div>
+    <style>
+        body {
+            overflow: hidden;
+        }
+        #game {
+            visibility: hidden;
+        }
+        #container {
+            visibility: visible;
+        }
+        #relative {
+            position: relative;
+        }
+        #instrumentlist {
+            padding: 0px;
+            margin-top: 0px;
+            margin-left: 22.8vw;
+            height: 50px;
+            width: 24vw;
+            transition: width 0.5s, height 0.5s;
+            text-align: center;
+            background-color: white;
+            visibility: hidden;
+        }
+        #join {
+            margin-top: 1vh;
+            margin-left: 1vw;
+            width: 68vw;
+            height: 5vh;
+            border-radius: 30px;
+            font-size: 3vmin;
+            transition: width 0.5s, height 0.5s;
+        }
+        #name, #instrument {
+            text-align: center;
+            margin-top: 1vh;
+            margin-left: 1vw;
+            width: 67.3vw;
+            height: 20vh;
+            border-radius: 30px;
+            font-size: 3vmin;
+            transition: width 0.5s, height 0.5s;
+        }
+        #instrument {
+            visibility: hidden;
+        }
+        #background {
+            position: absolute;
+            margin-left: -8px;
+            margin-top: -8px;
+            background: rgba(253,29,237,1);
+            background: linear-gradient(302deg, rgba(131,58,180,1) 0%, rgba(253,29,237,1) 10%, rgba(131,50,180,1) 20%, rgba(253,29,237,1) 30%, rgba(131,50,180,1) 40%, rgba(253,29,237,1) 50%, rgba(131,50,180,1) 60%, rgba(253,29,237,1) 70%, rgba(131,58,180,1) 80%, rgba(253,29,237,1) 90%, rgba(131,58,180,1) 100%);
+            height: 101vh;
+            width: 100.5vw;
+            z-index: -1;
+        }
+        #centerframe {
+            position: absolute;
+            z-index: 2;
+            margin-left: 15vw;
+            margin-top: 32vh;
+            width: 70vw;
+            height: 28vh;
+            background-color: white;
+            border-radius: 20px;
+            transition: width 0.5s, height 0.5s;
+        }
+        #flip {
+            position: absolute;
+            z-index: -1000;
+            margin-left: -8px;
+            margin-top: -8px;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            background-color: black;
+        }
+        #rotate {
+            font-size: 50px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+            text-align: center;
+        }
+        .bordered {
+            border-width: 2px;
+            border-style: solid;
+            border-color: black;
+        }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+        var ipv4 = (window.location.href).substr(7,((window.location.href).length - 8))
+        const ws = new WebSocket(`ws://${ipv4}:81`, "protocolOne")
+        var name = ""
+        var instrument = ""
+        var id = 0
+        var treble = ["Flute", "Clarinet", "Saxophone", "Trumpet", "French Horn", "Percussion"]
+        var bass = ["Trombone", "Baritone", "Tuba"]
+        $('#name').keypress(function(e){
+            if(e.keyCode==13)
+            $('#join').click()
+        })
+        document.getElementById('join').addEventListener('click', function(){
+            if(document.getElementById('name').value != ""){
+                id = Math.floor(Math.random() * 100000)
+                ws.send(`newplayer, ${document.getElementById('name').value}, ${id}`)
+                name = document.getElementById('name').value
+                document.getElementById('instrument').style.visibility = "initial"
+                document.getElementById('instrumentlist').style.visibility = "initial"
+                document.getElementById('name').style.height = "0px"
+                document.getElementById('name').style.width = "0px"
+                document.getElementById('join').style.height = "0px"
+                document.getElementById('join').style.width = "0px"
+                setTimeout(() => {
+                    document.getElementById('name').remove()
+                    document.getElementById('join').remove()
+                }, 500)
+            }
+        })
+        function instrumentchange(){
+            instrument = document.getElementById('instrumentlist').value
+            ws.send(`instrument, ${document.getElementById('instrumentlist').value}, ${name}`)
+        }
+        ws.addEventListener('message', function(msg){
+            msg = msg.data.toString().split(',')
+            if(msg[0] === "remove"){
+                if(parseInt(msg[1]) == id){
+                    location.reload()
+                }
+            }else if(msg[0] === "start"){
+                if(id != 0){
+                    location.href = `http://${ipv4}/game.html#${id}//${instrument}//${name}`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

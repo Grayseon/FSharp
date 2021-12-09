@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSharp</title>
+</head>
+<body>
+    <div id="zlast">
+        <h1 id="welcome">Welcome!</h1>
+        <button id="cg">Create Game</button>
+    </div>
+    <div id="creategame">
+        <button id="back">BACK</button>
+        <h1 id="infotop">Create Game</h1>
+        <input type="number" placeholder="MAX MINUTES" id="mam" min="1">
+    </div>
+    <style>
+        #welcome {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 40px;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }
+        #cg {
+            margin-left: 28%;
+            width: 200px;
+            height: 35px;
+            font-size: x-large;
+            position: absolute;
+            color: black;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            cursor: pointer;
+            background-color: white;
+        }
+        #creategame {
+            z-index: -1;
+            position: absolute;
+        }
+        #back {
+            position: absolute;
+            margin-right: -1px;
+            height: 30px;
+            width: 70px;
+            font-size: 15px;
+            background-color: white;
+        }
+        #infotop {
+            position: absolute;
+            margin-bottom: -1px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 40px;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }
+        body {
+            overflow: hidden;
+        }
+        #mam {
+            text-align: center;
+            transition: width 13s linear;
+        }
+    </style>
+    <script>
+        var create = document.getElementById('creategame')
+        var cg = document.getElementById('cg')
+        var e = document.getElementById('creategame').children
+        for(i=0; i<e.length; i++){
+            e[i].style.opacity = "0"
+        }
+        cg.addEventListener("click", ()=>{
+            e = document.getElementById("zlast").children;
+            for(i=0; i<e.length; i++){
+                e[i].style.transition = "opacity 1s"
+                e[i].style.opacity = "0"
+            }
+            setTimeout(() => {
+                document.getElementById('zlast').remove()
+                e = document.getElementById('creategame').children
+                create.style.position = "initial"
+                for(i=0; i<e.length; i++){
+                    e[i].style.transition = "opacity 1s"
+                    e[i].style.opacity = "1"
+                }
+            }, 1000);
+        })
+        document.getElementById('mam').addEventListener("click", ()=>{
+            var mam = document.getElementById('mam')
+            mam.style.width = "40px"
+        })
+    </script>
+</body>
+</html>

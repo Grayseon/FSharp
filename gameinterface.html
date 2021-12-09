@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSharp</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="players">
+        <div id="side" class="shadow-2xl">
+            <div class="player">
+                <p id="p1" class="pt">1st</p>
+            </div>
+            <div class="player">
+                <p id="p2" class="pt">2nd</p>
+            </div>
+            <div class="player">
+                <p id="p3" class="pt">3rd</p>
+            </div>
+            <div class="player">
+                <p id="p4" class="pt">4th</p>
+            </div>
+            <div class="player">
+                <p id="p5" class="pt">5th</p>
+            </div>
+        </div>
+    </div>
+    <div id="infobox">
+        <div id="question">
+            <p>What note is this?</p>
+            <img src="web/notest/B.png" id="qimg">
+        </div>
+        <div id="start">
+            <p class="text">Welcome
+                to FSharp!
+            </p>
+            <button id="sg">Start game</button>
+        </div>
+        <div id="info">
+            <p class="text">is in the lead!</p>
+        </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+        body {overflow:hidden;}
+        #p1 {
+            background-image: url('goldcrown.png');
+            background-position: 1vh center;
+            background-repeat: no-repeat;
+            background-size: 4vw, 4vh;
+        }
+        #p2 {
+            background-image: url('silvercrown.png');
+            background-position: 1vh center;
+            background-repeat: no-repeat;
+            background-size: 4vw, 4vh;
+        }
+        #p3 {
+            background-image: url('bronzecrown.png');
+            background-position: 1vh center;
+            background-repeat: no-repeat;
+            background-size: 4vw, 4vh;
+        }
+        #side {
+            position: absolute;
+            width: 34vw;
+            height: 100vh;
+            background-color: white;
+            z-index: 20;
+            transition: width 1s;
+        }
+        #qimg {
+            width: 65vw;
+            margin: auto;
+        }
+        #info {
+            visibility: hidden;
+            transition: opacity 0.5s;
+        }
+        #infobox {
+            background-color: white;
+            position: fixed;
+            top: 0;
+            margin-left: 34vw;
+            height: 100vh;
+            width: 70vw;
+            text-align: center;
+        }
+        #infobox > div {
+            position: absolute;
+        }
+        #sg {
+            width: 40vw;
+            font-size: 5vw;
+            margin: auto;
+            border-radius: 20px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: black;
+            transition: background-color 0.5s, width 0.5s, color 0.5s;
+        }
+        #start {
+            position: absolute;
+            transition: opacity 1s;
+        }
+        #sg:hover {
+            background: purple;
+            width: 50vw;
+            color: white;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .text {
+            font-family: 'Righteous', cursive;
+            font-size: 5vw;
+            line-height: 35vh;
+            width: 65vw;
+            height: 100%;
+            text-align: center;
+            transition: opacity 1s;
+        }
+        #question {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s;
+            transform: translateY(15vh);
+        }
+        #question > p {
+            font-size: 5vw;
+        }
+        .player {
+            border-radius: 20px;
+            width: 25vw;
+            height: 10vh;
+            margin-top: 8vh;
+            margin-left: 2vw;
+            line-height: 13vh;
+            text-align: center;
+            font-size: 4.3vw;
+            font-family: 'Karla', sans-serif;
+        }
+        .player > * {
+            position: absolute;
+            background-size: 100% 100%;
+            height: 13%;
+            width: 100%;
+            left: 0;
+            transition: width 1s;
+        }
+        #background {
+            position: absolute;
+            top: 0;
+            z-index: -5;
+            height: 100vh;
+            width: 100vw;
+        }
+        .pt {
+            transition: color 2s, opacity 2s;
+        }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+        const { ipcRenderer } = require('electron')
+        var players = 0
+        var namelist = []
+        var leaderboard = {}
+        var order = []
+        document.getElementById('sg').addEventListener('click', ()=>{
+            document.getElementById('start').style.opacity = '0'
+            document.getElementById('question').style.opacity = '1'
+            document.getElementById('start').remove()
+            ipcRenderer.send('starchannel', 'please')
+            var note = ipcRenderer.sendSync('synchronousget', 'please').toString().split('//')
+            var treble = note[1]
+            var bass = note[2]
+            document.getElementById('qimg').src = `web/notest/${treble.replace('#', 'sharp')}.png`
+            ipcRenderer.send('sendbuttons', 'please')
+        })
+        function updateleaderboard(){
+            order = []
+            namelist.forEach(name=>{
+                
+            })
+        }
+        ipcRenderer.on('playerscoreupdate', (event,msg)=>{
+            leaderboard[msg[0]] = msg[1]
+        })
+        ipcRenderer.on('asynchronous-ping', (event,msg)=>{
+            players = msg.length
+            namelist = msg
+            if(msg[0]){
+                document.getElementById('p1').innerHTML = `1st: ${msg[0]}`
+            }
+            if(msg[1]){
+                document.getElementById('p2').innerHTML = `2nd: ${msg[1]}`
+            }
+            if(msg[2]){
+                document.getElementById('p3').innerHTML = `3rd: ${msg[2]}`
+            }
+            if(msg[3]){
+                document.getElementById('p4').innerHTML = `4th: ${msg[3]}`
+            }
+            if(msg[4]){
+                document.getElementById('p5').innerHTML = `5th: ${msg[4]}`
+            }
+        })
+    </script>
+</body>
+</html>

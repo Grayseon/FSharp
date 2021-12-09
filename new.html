@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSharp</title>
+</head>
+<body>
+    <div id="front">
+        <div id="sidebar">
+        <img src="houseselected.png" id="house" class="sidebaricon">
+        <img src="rocket.png" id="rocket" class="sidebaricon">
+        <div id="gradient"></div>
+        <img src="license.png" id="license" class="sidebaricon">
+        </div>
+        <div id="create">
+            <h1 id="link"></h1>
+            <ul id="players"></ul>
+        </div>
+        <div id="button">
+            <button id="createb">Create</button>
+        </div>
+        <div id="licensing">
+            <p>House icon: Icon made by Freepik from www.flaticon.com</p>
+            <p>Rocket icon: Icon made by Freepik from www.flaticon.com</p>
+            <p>Documentation icon: Icon made by Freepik from www.flaticon.com</p>
+            <p>Software icon: Icon made by my cousin, Olive</p>
+            <h1>ws</h1>
+            <p>Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>
+
+                Permission is hereby granted, free of charge, to any person obtaining a copy
+                of this software and associated documentation files (the "Software"), to deal
+                in the Software without restriction, including without limitation the rights
+                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                copies of the Software, and to permit persons to whom the Software is
+                furnished to do so, subject to the following conditions:
+                
+                The above copyright notice and this permission notice shall be included in all
+                copies or substantial portions of the Software.
+                
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                SOFTWARE.
+                </p>
+        </div>
+        <div id="licensing2">
+            <h1>Electron</h1>
+            <p>Copyright (c) 2013-2020 GitHub Inc.
+
+                Permission is hereby granted, free of charge, to any person obtaining
+                a copy of this software and associated documentation files (the
+                "Software"), to deal in the Software without restriction, including
+                without limitation the rights to use, copy, modify, merge, publish,
+                distribute, sublicense, and/or sell copies of the Software, and to
+                permit persons to whom the Software is furnished to do so, subject to
+                the following conditions:
+                
+                The above copyright notice and this permission notice shall be
+                included in all copies or substantial portions of the Software.
+                
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+                EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+                MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+                NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+                LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+                OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+                WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.            
+                </p>
+        </div>
+        <div id="licensing3">
+            <h1>IoHook</h1>
+            <p>MIT License
+
+                Copyright (c) 2016 wilix
+                
+                Permission is hereby granted, free of charge, to any person obtaining a copy
+                of this software and associated documentation files (the "Software"), to deal
+                in the Software without restriction, including without limitation the rights
+                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                copies of the Software, and to permit persons to whom the Software is
+                furnished to do so, subject to the following conditions:
+                
+                The above copyright notice and this permission notice shall be included in all
+                copies or substantial portions of the Software.
+                
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                SOFTWARE.
+                </p>
+        </div>
+        <div id="home">
+            <p>To start a game, click on the rocket icon.</p>
+            <p>To see the licensing of the modules in this project, click on the document icon.</p>
+            <p>You can kick a player from the game by clicking on the player's name.</p>
+            <p>This is my cousin's cat, Budd. (he is an avid crab grass eater) (GRASS SOLD SEPARATELY) (Budd the cat (wouldnt say LOVES) to play fetch with straws.) (loves chin scratches) (likes to hunt stuffed animals) (we interviewed the owner of this cat.. ("i have a duck on a skatebord on my lamp with little things surrounding the duck, and every so often ill see it messed up", says Olive, the caretaker of Budd, "i believe 99% it was a cat"))</p>
+            <img src="budd.png">
+        </div>
+    </div>
+    <div id="back">
+        <div id="playerside" class="divide-y-4 divide-black divide-opacity-25">
+            <p>Grayson</p>
+            <p>REMY FROM RATATOUILLE</p>
+            <p>hhhhhhhhhhhhhhhhhhhhh</p>
+            <p>hhhhhhhhhhhhhhhhhhhhh</p>
+        </div>
+        <div id="left" class="grid justify-items-stretch">
+            <h1 id="pc">0 Collective Points</h1>
+            <div id="question">
+
+            </div>
+        </div>
+    </div>
+    <style>
+        #question {
+            background-color: white;
+            width: 80%;
+            height: 50%;
+        }
+        #left{
+            position: absolute;
+            background: rgb(41,41,41);
+            background: linear-gradient(90deg, rgba(41,41,41,1) 0%, rgba(33,113,96,1) 8%, rgba(35,199,189,1) 100%);
+            width: 85%;
+            height: 110%;
+            text-align: center;
+            margin-left: 289px;
+            margin-top: -8px;
+        }
+        #pc {
+            margin-top: -5px;
+            font-size: 598%;
+            text-align: center;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #playerside {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: -16px;
+            background: rgba(41, 41, 41, 1);
+            height: 9000px;
+            width: 305px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        #playerside > p {
+            padding-top: 10px;
+        }
+        #front {
+            opacity: 1;
+        }
+        #back {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        #lc {
+            margin-left: 25%;
+            position: absolute;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        #gradient {
+            position: absolute;
+            margin-top: -110px;
+            margin-left: 53px;
+            height: 105%;
+            width: 45px;
+            background: rgb(0,0,0);
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
+        }
+        #sidebar {
+            position: absolute;
+            visibility: visible;
+            background-color: black;
+            width: 53px;
+            margin-top: -9px;
+            margin-left: -8px;
+            height: 700px;
+        }
+        .sidebaricon {
+            width: 50px;
+            height: 50px;
+        }
+        body {
+            overflow: hidden;
+        }
+        #latestchangelog {
+            position: absolute;
+            margin-top: 14%;
+            margin-left: 27%;
+            width: 300px;
+            height: 500px;
+        }
+        #create {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: 88px;
+            width: 80.8%;
+            height: 100%;
+            visibility: hidden;
+        }
+        #licensing {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: 88px;
+            width: 80.8%;
+            height: 100%;
+            visibility: hidden;
+            text-align: center;
+        }
+        #infodiv {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: 88px;
+            width: 80.8%;
+            height: 100%;
+            visibility: hidden;
+            text-align: center;
+        }
+        #licensing2 {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: 88px;
+            width: 80.8%;
+            height: 100%;
+            visibility: hidden;
+            text-align: center;
+        }
+        #home {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: 88px;
+            width: 80.8%;
+            height: 100%;
+            visibility: initial;
+            text-align: center;
+        }
+        #link {
+            text-align: center;
+        }
+        #players {
+            text-align: center;
+            margin-left: -15%;
+            width: 100%;
+        }
+        .player {
+            text-align: center;
+        }
+        #createb {
+            position: absolute;
+            margin-top: 100%;
+            border-radius: 5px;
+            background-color: white;
+            width: 100%;
+            visibility: hidden;
+        }
+        #button {
+            position: absolute;
+            margin-top: 240px;
+            z-index: 50;
+            width: 79%;
+            margin-left: 90px;
+            border-radius: 40px;
+        }
+        #licensing3 {
+            position: absolute;
+            margin-top: -8px;
+            margin-left: 88px;
+            width: 80.8%;
+            height: 100%;
+            visibility: hidden;
+            text-align: center;
+        }
+        .player:hover {
+            color: red;
+        }
+    </style>
+    <script>
+        const { networkInterfaces } = require(`os`)
+        const { ipcRenderer } = require('electron')
+        const nets = networkInterfaces()
+        const results = Object.create(null)
+        var ipv4
+        var prefix
+        for(const name of Object.keys(nets)){
+            for(const net of nets[name]){
+                if(net.family === `IPv4` && !net.internal){
+                    if(!results[name]){
+                        results[name] = []
+                    }
+                    results[name].push(net.address)
+                    ipv4 = results[name][0]
+                    prefix = ipv4.slice(0, -ipv4.split('.')[ipv4.split('.').length - 1].length - 1)
+                }
+            }
+        }
+        document.getElementById('link').innerHTML = "Join the game by going to this link on your browser: " + ipv4
+        function removeplayer(name, id){
+            ipcRenderer.send('removechannel', `${name}, ${id}`)
+        }
+        function addplayer(name, id){
+            var ul = document.getElementById("players")
+            var li = document.createElement("p")
+            li.appendChild(document.createTextNode(name + " (Choosing instrument)"))
+            li.setAttribute("class", "player")
+            li.setAttribute("name", id.toString())
+            li.addEventListener('click', ()=>{
+                li.remove()
+                removeplayer(name, id)
+            })
+            ul.appendChild(li)
+        }
+        var house = document.getElementById('house')
+        var rocket = document.getElementById('rocket')
+        var license = document.getElementById('license')
+        house.addEventListener('click', ()=>{
+            document.getElementById('create').style.visibility = "hidden"
+            document.getElementById('createb').style.visibility = "hidden"
+            document.getElementById('licensing').style.visibility = "hidden"
+            document.getElementById('home').style.visibility = "initial"
+            document.getElementById('licensing2').style.visibility = "hidden"
+            document.getElementById('licensing3').style.visibility = "hidden"
+            house.src = "houseselected.png"
+            rocket.src = "rocket.png"
+            license.src= "license.png"
+        })
+        rocket.addEventListener('click', ()=>{
+            document.getElementById('create').style.visibility = "initial"
+            document.getElementById('createb').style.visibility = "initial"
+            document.getElementById('licensing').style.visibility = "hidden"
+            document.getElementById('home').style.visibility = "hidden"
+            document.getElementById('licensing2').style.visibility = "hidden"
+            document.getElementById('licensing3').style.visibility = "hidden"
+            rocket.src = "rocketselected.png"
+            house.src = "house.png"
+            license.src = "license.png"
+            document.getElementById("createb").innerHTML = "Create"
+        })
+        license.addEventListener('click', ()=>{
+            document.getElementById('create').style.visibility = "hidden"
+            document.getElementById('createb').style.visibility = "initial"
+            document.getElementById('home').style.visibility = "hidden"
+            document.getElementById('licensing').style.visibility = "initial"
+            document.getElementById('licensing2').style.visibility = "hidden"
+            document.getElementById('licensing3').style.visibility = "hidden"
+            rocket.src = "rocket.png"
+            house.src = "house.png"
+            license.src = "licenseselected.png"
+            document.getElementById("createb").innerHTML = "Next Page"
+        })
+        function instrumentchange(instrument, name){
+            for(i=0; i<document.getElementsByClassName('player').length; i++){
+                if(document.getElementsByClassName('player')[i].innerHTML.toString().startsWith(name)){
+                    document.getElementsByClassName('player')[i].innerHTML = `${name} (${instrument})`
+                }
+            }
+        }
+        var createb = document.getElementById('createb')
+        createb.addEventListener('click', ()=>{
+            if(createb.innerHTML.toString() == "Create"){
+                ipcRenderer.send('startchannel', 'startgame')
+            }else if(createb.innerHTML.toString() == "Next Page"){
+                var l1 = document.getElementById('licensing')
+                var l2 = document.getElementById('licensing2')
+                var l3 = document.getElementById('licensing3')
+                if(l1.style.visibility.toString() == 'initial'){
+                    l1.style.visibility = 'hidden'
+                    l2.style.visibility = 'initial'
+                    l3.style.visibility = 'hidden'
+                }else if(l2.style.visibility == 'initial'){
+                    l1.style.visibility = 'hidden'
+                    l2.style.visibility = 'hidden'
+                    l3.style.visibility = 'initial'
+                }else if(l3.style.visibility == 'initial'){
+                    l1.style.visibility = 'initial'
+                    l2.style.visibility = 'hidden'
+                    l3.style.visibility = 'hidden'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

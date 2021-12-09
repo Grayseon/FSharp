@@ -1,0 +1,24 @@
+{
+    "treble": {
+        "instruments": ["Flute", "Clarinet", "Saxophone", "Trumpet", "French Horn", "Percussion"],
+        "lineorders": {
+            "5": ["B"],
+            "4": ["C", "C#"],
+            "3": ["D", "D#", "Db"],
+            "2": ["E", "Eb"],
+            "1": ["F"],
+            "0": ["G", "G#", "Gb"]
+        }
+    },
+    "bass": {
+        "instruments": ["Trombone", "Baritone", "Tuba"],
+        "lineorders": {
+            "5": ["D"],
+            "4": ["E", "E#"],
+            "3": ["F", "F#", "Fb"],
+            "2": ["G", "Gb"],
+            "1": ["A"],
+            "0": ["B", "B#", "Bb"]
+        }
+    }
+}

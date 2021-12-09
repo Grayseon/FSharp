@@ -1,0 +1,49 @@
+{
+  "name": "fsharp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dist": "electron-builder --mac"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "iohook": "^0.9.3",
+    "jquery": "^3.6.0",
+    "ws": "^8.2.2"
+  },
+  "devDependencies": {
+    "electron": "^12.0.0",
+    "electron-builder": "^22.13.1",
+    "electron-rebuild": "^3.2.3"
+  },
+  "iohook": {
+    "targets": [
+      "node-87",
+      "electron-89"
+    ],
+    "platforms": [
+      "win32",
+      "darwin"
+    ],
+    "arches": [
+      "x64",
+      "ia32"
+    ]
+  },
+  "build": {
+    "npmRebuild": false,
+    "appId": "me.grayson.fsharp",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "dmg": {
+      "icon": "icon.png"
+    }
+  }
+}

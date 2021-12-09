@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSharp</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="top" class="shadow-2xl">
+        <img src="icon.png" style="height: 100%;" id="icon">
+        <p id="title">FSharp</p>
+        <p id="pan">0 Points</p>
+    </div>
+    <div id="quiz">
+        <div id="dim">
+            <div id="cow">
+                <p id="coi"></p>
+                <p id="po"></p>
+            </div>
+        </div>
+        <div id="question">
+            <img src="" id="questionimg">
+        </div>
+        <div id="buttons">
+            <div id="gb" class="shadow-2xl button">
+                <h1 id="gbinner"></h1>
+                <div class="overlay"></div>
+            </div>
+            <div id="yb" class="shadow-2xl button">
+                <h1 id="ybinner"></h1>
+                <div class="overlay"></div>
+            </div>
+            <div id="ob" class="shadow-2xl button">
+                <h1 id="obinner"></h1>
+                <div class="overlay"></div>
+            </div>
+            <div id="rb" class="shadow-2xl button">
+                <h1 id="rbinner"></h1>
+                <div class="overlay"></div>
+            </div>
+        </div>
+        <div id="startmsg">
+            <h1 id="wttg">Welcome! The game is starting soon!</h1>
+        </div>
+    </div>
+    <style>
+        #cow > p {
+            color: white;
+            font-size: 5vw;
+            text-align: center;
+        }
+        #cow {
+            transition: opacity 1s;
+            opacity: 0;
+        }
+        #dim {
+            position: fixed;
+            background-color: black;
+            margin-top: 7vh;
+            height: 95vh;
+            width: 100vw;
+            z-index: -5;
+            opacity: 0;
+            transition: opacity 1s, background-color 1s;
+        }
+        #quiz {
+            position: relative;
+            z-index: 3;
+        }
+        #question {
+            position: absolute;
+            width: 100vw;
+            height: 47vh;
+            margin-top: 8vh;
+            text-align: center;
+        }
+        #question > * {
+            margin: auto;
+            height: 46vh;
+        }
+        #wttg {
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            font-size: 5vw;
+            opacity: 1;
+        }
+        #startmsg {
+            height: 100vh;
+            line-height: 85vh;
+        }
+        body {
+            overflow: hidden;
+        }
+        .button > h1 {
+            position: absolute;
+            z-index: 2;
+            width: 47.5vw;
+            height: 20vh;
+            font-size: 10vw;
+            color: white;
+            text-align: center;
+            line-height: 20vh;
+        }
+        .overlay {
+            z-index: 1;
+        }
+        #rb:hover > .overlay {
+            position:absolute;
+            width:100%;
+            height:100%;
+            background-color:#000;
+            opacity:0.5;
+        }
+        #ob:hover > .overlay {
+            position:absolute;
+            width:100%;
+            height:100%;
+            background-color:#000;
+            opacity:0.5;
+        }
+        #yb:hover > .overlay {
+            position:absolute;
+            width:100%;
+            height:100%;
+            background-color:#000;
+            opacity:0.5;
+        }
+        #gb:hover > .overlay {
+            position:absolute;
+            width:100%;
+            height:100%;
+            background-color:#000;
+            opacity:0.5;
+        }
+        .button {
+            position: absolute;
+            width: 47.5vw;
+            height: 20vh;
+        }
+        #ob {
+            background-color: orange;
+            right: 0vw;
+            bottom: 25vh;
+        }
+        #rb {
+            background-color: red;
+            left: 0vw;
+            bottom: 25vh;
+        }
+        #yb {
+            background-color: #fcdb03;
+            left: 0vw;
+            bottom: 0vw;
+        }
+        #gb {
+            background-color: green;
+            right: 0vw;
+            bottom: 0vw;
+        }
+        #top {
+            position: fixed;
+            white-space: nowrap;
+            width: 100vw;
+            height: 7vh;
+            z-index: 10;
+        }
+        #top > * {
+            display: inline-block;
+        }
+        #title {
+            font-size: x-large;
+        }
+        #pan {
+            position: absolute;
+            font-size: x-large;
+            margin-top: 1vh;
+            right: 1vw;
+        }
+        #buttons {
+            visibility: hidden;
+        }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+        var hash = window.location.hash.substr(1).split('//')
+        var instrument = hash[1]
+        var id = hash[0]
+        var name = hash[2]
+        var ipv4 = window.location.hostname
+        const ws = new WebSocket(`ws://${ipv4}:81`, "protocolOne")
+        var interval
+        var gainpoints = 1000
+        function matchover(){
+            newid = button.target.id.toString()
+            answer = document.getElementById('questionimg').src.toString().split('/')[4].split('.')[0].replace('sharp', '#')
+            if(document.getElementById(newid).innerHTML.toString().replace('sharp', '#') === answer){
+                document.getElementById('dim').style.backgroundColor = "yellowgreen"
+                document.getElementById('cow').style.opacity = '1'
+                document.getElementById('coi').innerHTML = 'Correct!'
+                if(gainpoints < 0){
+                    gainpoints = 0
+                }
+                document.getElementById('po').innerHTML = `+${gainpoints} Points`
+                document.getElementById('pan').innerHTML = name + " " + (parseInt(document.getElementById('pan').innerHTML.toString().split(' ')[1]) + gainpoints).toString() + " Points"
+            }else{
+                document.getElementById('dim').style.backgroundColor = "red"
+                document.getElementById('cow').style.opacity = '1'
+                document.getElementById('coi').innerHTML = 'Incorrect!'
+                document.getElementById('po').innerHTML = `+0 Points`
+            }
+        }
+        function setbutton(to){
+            buttonids = ['buttons', 'rbinner', 'obinner', 'ybinner', 'gbinner']
+            random = Math.floor(Math.random() * 5)
+            if(document.getElementById(buttonids[random]).innerHTML === ""){
+                document.getElementById(buttonids[random]).innerHTML = to
+            }
+        }
+        document.getElementById('pan').innerHTML = name + " " + "0 Points"
+        function question(){
+            gainpoints = 1000
+            interval = setInterval(() => {
+                gainpoints--
+            }, 70)
+            document.getElementById('startmsg').style.visibility = 'hidden'
+            document.getElementById('buttons').style.visibility = 'visible'
+            $.get("./notes.json", function(json) {
+                if(json.bass.instruments.includes(instrument)){
+                    document.getElementById('questionimg').src = `notesb/${msg[2].replace('#', "sharp")}.png`
+                }else{
+                    document.getElementById('questionimg').src = `notest/${msg[1].replace('#', "sharp")}.png`
+                }
+            })
+        }
+        ws.onopen = function(){
+            ws.addEventListener('message', function(msg){
+                msg = msg.data.toString().split('//')
+                if(msg[0] === 'buttons'){
+                    setTimeout(() => {
+                        document.getElementById('dim').style.backgroundColor = 'black'
+                    }, 1000);
+                    $.get("./notes.json", function(json) {
+                        if(json.bass.instruments.includes(instrument)){
+                            document.getElementById('dim').style.opacity = '0'
+                            document.getElementById('questionimg').style.visibility = 'visible'
+                            msgo = [msg[2], msg[4], msg[6], msg[8]]
+                            msg = [msg[2], msg[4], msg[6], msg[8]]
+                            var answer = document.getElementById('questionimg').src.toString().split('/')[4].split('.')[0].replace('sharp', '#')
+                            buttonidso = ['rbinner', 'obinner', 'ybinner', 'gbinner']
+                            buttonids = ['rbinner', 'obinner', 'ybinner', 'gbinner']
+                            buttonids.forEach(id=>{
+                                document.getElementById(id).innerHTML = ""
+                            })
+                            buttonids.forEach(button=>{
+                                var random = Math.floor(Math.random() * msg.length)
+                                document.getElementById(button).innerHTML = msg[random]
+                                msg.splice(random,1)
+                            })
+                            if(!msgo.includes(answer)){
+                                ran = Math.floor(Math.random() * 4)
+                                document.getElementById(buttonidso[ran]).innerHTML = answer
+                            }
+                        }else{
+                            document.getElementById('dim').style.opacity = '0'
+                            document.getElementById('questionimg').style.visibility = 'visible'
+                            msgo = [msg[1], msg[3], msg[5], msg[7]]
+                            msg = [msg[1], msg[3], msg[5], msg[7]]
+                            var answer = document.getElementById('questionimg').src.toString().split('/')[4].split('.')[0].replace('sharp', '#')
+                            buttonidso = ['rbinner', 'obinner', 'ybinner', 'gbinner']
+                            buttonids = ['rbinner', 'obinner', 'ybinner', 'gbinner']
+                            buttonids.forEach(id=>{
+                                document.getElementById(id).innerHTML = ""
+                            })
+                            buttonids.forEach(button=>{
+                                var random = Math.floor(Math.random() * msg.length)
+                                document.getElementById(button).innerHTML = msg[random]
+                                msg.splice(random,1)
+                            })
+                            if(!msgo.includes(answer)){
+                                ran = Math.floor(Math.random() * 4)
+                                document.getElementById(buttonidso[ran]).innerHTML = answer
+                            }
+                        }
+                    })
+                }else if('start'){
+                    document.getElementById('startmsg').style.visibility = 'visible'
+                    document.getElementById('buttons').style.visibility = 'hidden'
+                    document.getElementById('questionimg').style.visibility = 'hidden'
+                    document.getElementById('cow').style.opacity = '0'
+                    for(i=0;i<document.getElementsByClassName('button');i++){
+                        
+                    }
+                }
+            })
+            var buttons = document.getElementsByClassName('button')
+            for(i=0;i<buttons.length;i++){
+                buttons[i].addEventListener('click', (button)=>{
+                    clearInterval(interval)
+                    document.getElementById('buttons').style.visibility = 'hidden'
+                    document.getElementById('dim').style.backgroundColor = 'black'
+                    document.getElementById('dim').innerHTML = `            <div id="cow">
+                <p id="coi"></p>
+                <p id="po"></p>
+            </div>`
+                    document.getElementById('cow').style.opacity = '0'
+                    document.getElementById('questionimg').style.visibility = 'hidden'
+                    document.getElementById('dim').style.opacity = '1'
+                    newid = button.target.id.toString()
+                    answer = document.getElementById('questionimg').src.toString().split('/')[4].split('.')[0].replace('sharp', '#')
+                    if(document.getElementById(newid).innerHTML.toString().replace('sharp', '#') === answer){
+                        ws.send(`questionanswer, ${(parseInt(document.getElementById('pan').innerHTML.toString().split(' ')[1]) + gainpoints).toString()}, ${name}`)
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FSharp</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="home" class="page grid justify-items-stretch">
+        <p>To start a game, click on the rocket icon.</p>
+        <p>To see the licensing of the modules in this project, click on the document icon.</p>
+        <p>You can kick a player from the game by clicking on the player's name.</p>
+        <img src="budd.png">
+    </div>
+    <div id="game" class="page">
+        <h1 id="tojoin"></h1>
+        <ul id="players"></ul>
+        <button id="createg">Create</button>
+    </div>
+    <div id="menu" class="shadow-2xl">
+        <div id="sidebar"></div>
+        <div id="titles">
+            <p class="title"></p>
+            <p class="title">Home</p>
+            <p class="title">Game</p>
+            <p class="title">Licensing</p>
+        </div>
+        <img src="./menu.png" class="menuicon" id="ignore">
+        <img src="./house.png" class="menuicon" id="home">
+        <img src="./rocket.png" class="menuicon" id="game">
+        <img src="./license.png" class="menuicon" id="licensing">
+    </div>
+    <div id="panel"></div>
+    <div id="licensing" class="page">
+        <p>Sidebar icons: Icon made by Freepik from www.flaticon.com</p>
+        <p>Software icon: Icon made by my cousin, Olive</p><br>
+        <h3>Electron</h3><br>
+        <p>Game background: Icon made by my cousin, Olive</p>
+        <p>Name background: Icon made by my cousin, Olive</p>
+        <p>Copyright (c) 2013-2020 GitHub Inc.
+
+            Permission is hereby granted, free of charge, to any person obtaining
+            a copy of this software and associated documentation files (the
+            "Software"), to deal in the Software without restriction, including
+            without limitation the rights to use, copy, modify, merge, publish,
+            distribute, sublicense, and/or sell copies of the Software, and to
+            permit persons to whom the Software is furnished to do so, subject to
+            the following conditions:
+            
+            The above copyright notice and this permission notice shall be
+            included in all copies or substantial portions of the Software.
+            
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+            NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+            LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+            OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+            WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        </p><br>
+        <h3>Express</h3><br>
+        <p>(The MIT License)
+
+            Copyright (c) 2009-2014 TJ Holowaychuk <tj@vision-media.ca>
+            Copyright (c) 2013-2014 Roman Shtylman <shtylman+expressjs@gmail.com>
+            Copyright (c) 2014-2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+            
+            Permission is hereby granted, free of charge, to any person obtaining
+            a copy of this software and associated documentation files (the
+            'Software'), to deal in the Software without restriction, including
+            without limitation the rights to use, copy, modify, merge, publish,
+            distribute, sublicense, and/or sell copies of the Software, and to
+            permit persons to whom the Software is furnished to do so, subject to
+            the following conditions:
+            
+            The above copyright notice and this permission notice shall be
+            included in all copies or substantial portions of the Software.
+            
+            THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+            IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+            CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+            TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+            SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        </p><br>
+        <h3>IoHook</h3><br>
+        <p>MIT License
+
+            Copyright (c) 2016 wilix
+            
+            Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:
+            
+            The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.
+            
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.
+        </p><br>
+        <h3>Electron Builder</h3>
+        <p>The MIT License (MIT)
+
+            Copyright (c) 2015 Loopline Systems
+            
+            Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:
+            
+            The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.
+            
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.
+            
+        </p>
+        <h3>JQuery</h3>
+        <p>Copyright OpenJS Foundation and other contributors, https://openjsf.org/
+
+            Permission is hereby granted, free of charge, to any person obtaining
+            a copy of this software and associated documentation files (the
+            "Software"), to deal in the Software without restriction, including
+            without limitation the rights to use, copy, modify, merge, publish,
+            distribute, sublicense, and/or sell copies of the Software, and to
+            permit persons to whom the Software is furnished to do so, subject to
+            the following conditions:
+            
+            The above copyright notice and this permission notice shall be
+            included in all copies or substantial portions of the Software.
+            
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+            NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+            LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+            OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+            WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            </p>
+        <h3>ws</h3>
+        <p>Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>
+
+            Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:
+            
+            The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.
+            
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.
+            </p>
+    </div>
+    <style>
+        #createg {
+            position: absolute;
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+            text-align: center;
+            margin-left: -38vw;
+            width: 75vw;
+            border-radius: 10px;
+            margin-top: 95vh;
+            top: 0px;
+        }
+        body { 
+            overflow: hidden;
+        }
+        #licensing {
+            overflow: visible;
+        }
+        #tojoin { 
+            font-size: 5vw;
+        }
+        #game {
+            visibility: visible;
+        }
+        #panel {
+            position: fixed;
+            height: 2000vh;
+            width: 60vw;
+            margin-left: 20vw;
+            z-index: -7;
+        }
+        #sidebar {
+            position: fixed;
+            height: 100vh;
+            width: 20vw;
+            transition: width 1s, height 1s;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        .page {
+            position: absolute;
+            text-align: center;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            height: 100vh;
+            width: 76vw;
+            margin-left: 22vw;
+            transition: width 1s, height 1s, opacity 1s;
+            visibility: hidden;
+            z-index: -3;
+        }
+        .title {
+            position: relative;
+            z-index: -1;
+            margin-top: 0.75vh;
+            height: 12vh;
+            font-size: 8vh;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            display: hidden;
+            opacity: 0;
+            transition: opacity 1s, width 1s, height 1s;
+            overflow: hidden;
+        }
+        #titles {
+            position: absolute;
+            padding-top: 1vh;
+            margin-left: 18vw;
+            width: 82vw;
+            height: 100vh;
+            background-color: rgba(1, 1, 1, 0);
+            transition: width 1s, height 1s;
+            overflow: hidden;
+        }
+        #menu {
+            position: fixed;
+            background-color: white;
+            height: 100vh;
+            width: 20vw;
+            transition: width 1s;
+            z-index: -2;
+            transition: width 1s, height 1s;
+            overflow: hidden;
+        }
+        .menuicon {
+            position: sticky;
+            padding-top: 0.5vh;
+            margin-bottom: 1vh;
+            height: 12vh;
+            width: 13vh;
+            overflow: hidden;
+            padding-left: 2vw;
+            transition: width 1s, height 1s;
+        }
+        .player {
+            cursor: text;
+        }
+        .player:hover {
+            color: red;
+        }
+    </style>
+    <script>
+        const { networkInterfaces } = require(`os`)
+        const { ipcRenderer } = require('electron')
+        const nets = networkInterfaces()
+        const results = Object.create(null)
+        var ipv4
+        var prefix
+        for(const name of Object.keys(nets)){
+            for(const net of nets[name]){
+                if(net.family === `IPv4` && !net.internal){
+                    if(!results[name]){
+                        results[name] = []
+                    }
+                    results[name].push(net.address)
+                    ipv4 = results[name][0]
+                    prefix = ipv4.slice(0, -ipv4.split('.')[ipv4.split('.').length - 1].length - 1)
+                }
+            }
+        }
+        function removeplayer(name, id){
+            ipcRenderer.send('removechannel', `${name}, ${id}`)
+        }
+        document.getElementById('tojoin').innerHTML = `To join, go to ${ipv4} in your browser.`
+        var onsidebar = false
+        var onpage = "home"
+        function instrumentchange(instrument, name){
+            for(i=0; i<document.getElementsByClassName('player').length; i++){
+                if(document.getElementsByClassName('player')[i].innerHTML.toString().startsWith(name)){
+                    document.getElementsByClassName('player')[i].innerHTML = `${name} (${instrument})`
+                }
+            }
+        }
+        const $ = require('jquery')
+        document.getElementById('createg').addEventListener('click', function(){
+            ipcRenderer.send('startchannel', 'start')
+        })
+        function addplayer(name, id){
+            var ul = document.getElementById("players")
+            var li = document.createElement("p")
+            li.appendChild(document.createTextNode(name + " (Choosing instrument)"))
+            li.setAttribute("class", "player")
+            li.setAttribute("name", id.toString())
+            li.addEventListener('click', ()=>{
+                li.remove()
+                removeplayer(name, id)
+            })
+            ul.appendChild(li)
+        }
+        function flipPage(page){
+            $('.page').each(function(i,e){
+                if(e.id.toString() == page){
+                    e.style.visibility = 'visible'
+                }else{
+                    if(page != "ignore")
+                    e.style.visibility = 'hidden'
+                }
+            })
+        }
+        document.getElementById('sidebar').addEventListener('mouseover', function(){
+            document.getElementById('menu').style.width = "80vw"
+            document.getElementById('panel').style.zIndex = "50"
+            for (let i = 0; i < document.getElementsByClassName('title').length; i++) {
+                const element = document.getElementsByClassName('title')[i]
+                element.style.opacity = "1"
+            }
+        })
+        document.getElementById('panel').addEventListener('mouseleave', function(){
+            document.getElementById('menu').style.width = "20vw"
+            document.getElementById('panel').style.zIndex = "-7"
+            for (let i = 0; i < document.getElementsByClassName('title').length; i++) {
+                const element = document.getElementsByClassName('title')[i]
+                element.style.opacity = "0"
+            } 
+        })
+        for (let i = 0; i < document.getElementsByClassName('menuicon').length; i++) {
+            const element = document.getElementsByClassName('menuicon')[i]
+            if(element.id === 'licensing'){
+                element.addEventListener('click', function(){
+                    document.getElementById('menu').style.width = "20vw"
+                    document.getElementById('panel').style.zIndex = "-7"
+                    document.body.style.overflow = "visible"
+                    $('.title').each(function(i,e){
+                        e.style.opacity = '0'
+                    })
+                    flipPage(element.id)
+                })
+            }else{
+                element.addEventListener('click', function(){
+                    document.getElementById('menu').style.width = "20vw"
+                    document.getElementById('panel').style.zIndex = "-7"
+                    document.body.style.overflow = "hidden"
+                    window.scrollTo(0,0)
+                    $('.title').each(function(i,e){
+                        e.style.opacity = '0'
+                    })
+                    flipPage(element.id)
+                })
+            }
+            element.addEventListener('mouseover', function(){
+                document.getElementById('menu').style.width = "80vw"
+                document.getElementById('panel').style.zIndex = "50"
+                for (let i = 0; i < document.getElementsByClassName('title').length; i++) {
+                    const element = document.getElementsByClassName('title')[i]
+                    element.style.opacity = "1"
+                }
+            })
+        }
+    </script>
+</body>
+</html>
